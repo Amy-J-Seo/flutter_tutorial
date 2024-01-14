@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clone_instagram/home.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
 import 'package:get/get.dart';
@@ -15,9 +16,7 @@ class App extends GetView<BottomNavController> {
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-              Container(
-                child: Text('Home'),
-              ),
+            Home(),
               Container(
                 child: Text('Search'),
               ),
