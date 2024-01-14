@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/home.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
+import 'package:flutter_clone_instagram/src/pages/search.dart';
 import 'package:get/get.dart';
 
 class App extends GetView<BottomNavController> {
@@ -12,14 +13,11 @@ class App extends GetView<BottomNavController> {
     return WillPopScope(
       child: Obx(
         () => Scaffold(
-          appBar: AppBar(),
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
             Home(),
-              Container(
-                child: Text('Search'),
-              ),
+             Search(),
               Container(
                 child: Text('Upload'),
               ),
