@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clone_instagram/src/pages/search/search_focus.dart';
 import 'package:get/get.dart';
 import 'package:quiver/iterables.dart';
 
@@ -14,13 +15,13 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   List<List<int>> groupBox = [[], [], []];
-  List<int> groupIndex = [0,0,0];
+  List<int> groupIndex = [0, 0, 0];
 
   @override
   void initState() {
     super.initState();
     for (var i = 0; i < 100; i++) {
-  var gi = groupIndex.indexOf(min<int>(groupIndex)!);
+      var gi = groupIndex.indexOf(min<int>(groupIndex)!);
 
       // var gi = i % 3;
       var size = 1;
@@ -28,7 +29,7 @@ class _SearchState extends State<Search> {
         size = Random().nextInt(100) % 2 == 0 ? 1 : 2;
       }
       groupBox[gi].add(size);
-      groupIndex[gi] +=size;
+      groupIndex[gi] += size;
       print(groupBox);
     }
   }
@@ -37,21 +38,29 @@ class _SearchState extends State<Search> {
     return Row(
       children: [
         Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            margin: const EdgeInsets.only(left: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              color: const Color(0xffefefef),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.search),
-                Text(
-                  'Search',
-                  style: TextStyle(fontSize: 15, color: Colors.grey),
-                ),
-              ],
+          child: GestureDetector(
+            onTap: () {
+              //
+              // Get.to(SearchFocus());
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchFocus()));
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+              margin: const EdgeInsets.only(left: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: const Color(0xffefefef),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.search),
+                  Text(
+                    'Search',
+                    style: TextStyle(fontSize: 15, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -72,16 +81,18 @@ class _SearchState extends State<Search> {
           (index) => Expanded(
             child: Column(
               children: List.generate(
-                  groupBox[index].length,
-                  (jndex) => Container(
-                        height: Get.width * 0.33 * groupBox[index][jndex],
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)]),
-                    child: CachedNetworkImage(imageUrl: 'https://plus.unsplash.com/premium_photo-1697730198238-48ee2f2fe1b7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    fit:BoxFit.cover) ,
-                      ),
+                groupBox[index].length,
+                (jndex) => Container(
+                  height: Get.width * 0.33 * groupBox[index][jndex],
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      color: Colors.primaries[
+                          Random().nextInt(Colors.primaries.length)]),
+                  child: CachedNetworkImage(
+                      imageUrl:
+                          'https://plus.unsplash.com/premium_photo-1697730198238-48ee2f2fe1b7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      fit: BoxFit.cover),
+                ),
               ).toList(),
             ),
           ),

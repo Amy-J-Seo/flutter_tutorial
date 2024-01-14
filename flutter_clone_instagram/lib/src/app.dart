@@ -16,8 +16,15 @@ class App extends GetView<BottomNavController> {
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-            Home(),
-             Search(),
+              const Home(),
+              Navigator(
+                key: controller.searchPageNavigationKey,
+                onGenerateRoute: (routeSetting) {
+                  return MaterialPageRoute(
+                    builder: (context) => const Search(),
+                  );
+                },
+              ),
               Container(
                 child: Text('Upload'),
               ),
