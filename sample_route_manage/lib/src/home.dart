@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sample_route_manage/src/pages/general/first.dart';
+import 'package:sample_route_manage/src/pages/reactive_state_management_page.dart';
 import 'package:sample_route_manage/src/pages/simple_state_management_page.dart';
 
 class Home extends StatelessWidget {
@@ -56,6 +57,14 @@ class Home extends StatelessWidget {
               const Text('Simple state management'),
               onPressed: () {
                 Get.to(const SimpleStateManagePage());
+                // Get.to(const FirstPage(), arguments:"hello");
+              },
+            ),
+            ElevatedButton(
+              child:
+              const Text('Reactive State management'),
+              onPressed: () {
+                Get.to(const ReactiveStateManagementPage());
                 // Get.to(const FirstPage(), arguments:"hello");
               },
             ),

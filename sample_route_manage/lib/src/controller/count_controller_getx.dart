@@ -6,5 +6,9 @@ void increase(){
   count++;
   update();
 }
+void putNumber(int value){
+  count = value;
+  update();
+}
 
 }
